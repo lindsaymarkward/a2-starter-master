@@ -1,2 +1,9 @@
 .idea/
 __pycache__/
+test_book.py
+.gitignore
+*.pyc
+
+test_book.py
+
+test_book.py
