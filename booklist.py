@@ -7,6 +7,15 @@ class BookList:
 
     # def __init__(self):
     #     __books = []
+    def getBooks(self):
+        return self.__books
+
+    def choseBookByStatus(self, status):
+        chosenList = BookList()
+        for book in self.__books:
+            if book.getStatus() == status:
+                chosenList.addBook2(book)
+        return chosenList
 
     def loadBook(self):
         with open('books.csv') as f:
@@ -24,6 +33,9 @@ class BookList:
     def addBook(self, title, author, page):
         self.__books.append(Book(title, author, page, 'r'))
 
+    def addBook2(self, book):
+        self.__books.append(book)
+
     def getBookByTitle(self, t):
         for book in self.__books:
             if book.getTitle() == t:
@@ -31,11 +43,10 @@ class BookList:
         return None
 
 
-    def getTotalPage(self, s):
+    def getTotalPage(self):
         total = 0
         for book in self.__books:
-            if book.getStatus() == s:
-                total += book.getPage()
+            total += book.getPage()
         return total
 
     def sort(self): #by author and no of pages
