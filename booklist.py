@@ -5,30 +5,24 @@ from book import Book
 class BookList:
     __books = []
 
-    # def __init__(self):
-    #     __books = []
+    def __init__(self):
+         __books = []
+
     def getBooks(self):
         return self.__books
-
-    def choseBookByStatus(self, status):
-        chosenList = BookList()
-        for book in self.__books:
-            if book.getStatus() == status:
-                chosenList.addBook2(book)
-        return chosenList
 
     def loadBook(self):
         with open('books.csv') as f:
             f_csv = csv.reader(f)
             for row in f_csv:
-                self.__books.append(Book(row[0], row[1], row[2], 'r'))
+                self.__books.append(Book(row[0], row[1], row[2], row[3]))
         print (str(len(self.__books)) + " books load from books.csv")
 
     def saveBook(self):
         with open('books.csv', 'w') as f:
             f_csv = csv.writer(f)
-            for n in self.__books:
-                f_csv.writerow([n.__title, n.__author, n.__page, n.__status])
+            for book in self.__books:
+                f_csv.writerow([book.getTitle(), book.getAuthor(), book.getPage(), book.getStatus()])
 
     def addBook(self, title, author, page):
         self.__books.append(Book(title, author, page, 'r'))
@@ -46,7 +40,7 @@ class BookList:
     def getTotalPage(self):
         total = 0
         for book in self.__books:
-            total += book.getPage()
+            total += int(book.getPage())
         return total
 
     def sort(self): #by author and no of pages

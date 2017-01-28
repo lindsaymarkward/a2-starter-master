@@ -24,6 +24,9 @@ class Book:
     def getTitle(self):
         return self.__title
 
+    def getAuthor(self):
+        return self.__author
+
     def getStatus(self):
         return self.__status
 
@@ -34,7 +37,7 @@ class Book:
         self.__status = 'c'
 
     def isLong(self):
-        if self.__page > 500:
+        if int(self.__page) > 500:
             return True
         else:
             return False
