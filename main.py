@@ -1,8 +1,8 @@
 """
-Name:
-Date:
-Brief Project Description:
-GitHub URL:
+Name: Wei Siyuan
+Date: 2017-01-29
+Brief Project Description: a reading list to help users to keep tracking of reading history
+GitHub URL: https://github.com/ParisWei/a2-starter-master.git
 """
 import kivy
 kivy.require('1.8.0')
