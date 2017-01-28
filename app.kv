@@ -4,7 +4,6 @@ BoxLayout:
 
     GridLayout:
         id: buttons
-        rows: 5
         cols: 1
         size_hint_x: 0.3
 
@@ -22,14 +21,20 @@ BoxLayout:
             text: 'Title:'
         TextInput:
             id: title
+            multiline: False
+            write_tab: False
         Label:
             text: 'Author:'
         TextInput:
             id: author
+            multiline: False
+            write_tab: False
         Label:
             text: 'Pages:'
         TextInput:
             id: page
+            multiline: False
+            write_tab: False
         Button:
             text: 'Add Item'
             on_press: app.press_add()

@@ -1,6 +1,6 @@
 """
 Name:
-Date: 
+Date:
 Brief Project Description:
 GitHub URL:
 """
@@ -16,12 +16,18 @@ from booklist import BookList
 
 
 class ReadingListApp(App):
+    """
+    Main app to show readling list
+    """
     LONG_BOOK_COLOR = [0.2,0.7,0.9,1]
     SHORT_BOOK_COLOR = [0.9,0.7,0.2,1]
     def __init__(self, **kwargs):
-         super().__init__(**kwargs)
-         self.list = BookList()
-         self.list.loadBook()
+        """
+        Construct main app
+        """
+        super().__init__(**kwargs)
+        self.list = BookList()
+        self.list.loadBook()
 
 
     def build(self):
@@ -34,10 +40,12 @@ class ReadingListApp(App):
         self.create_book_buttons('r')
         return self.root
 
-    '''
-
-    '''
     def create_book_buttons(self, s):
+        """
+        Refresh the list of book on right side
+        :param s: the book status, can be 'r' or 'c'
+        :return: NA
+        """
         self.root.ids.listview.clear_widgets()
         total = 0
         for book in self.list.getBooks():
@@ -63,6 +71,11 @@ class ReadingListApp(App):
 
 
     def press_entry(self, instance):
+        """
+        react to click on one of book in list, either complete the book or show detail information
+        :param instance: the button being pressed
+        :return: NA
+        """
         name = instance.text
         book = self.list.getBookByTitle(name)
         if(book.getStatus() == 'r'):
@@ -74,6 +87,10 @@ class ReadingListApp(App):
         instance.state = 'down'
 
     def press_clear(self):
+        """
+        Clear three input fields on left side
+        :return: NA
+        """
         self.root.ids.title.text = ''
         self.root.ids.author.text = ''
         self.root.ids.page.text = ''
@@ -81,6 +98,10 @@ class ReadingListApp(App):
 
 
     def press_add(self):
+        """
+        Add a required book based on the information filled
+        :return: NA
+        """
         if (self.getInputString(self.root.ids.title.text)
                 and self.getInputString(self.root.ids.author.text)
                 and self.getInputInt(self.root.ids.page.text)):
@@ -89,11 +110,19 @@ class ReadingListApp(App):
             self.create_book_buttons('r')
 
     def on_stop(self):
+        """
+        save the book list to csv on exit
+        :return: NA
+        """
         self.list.saveBook()
 
     # validate string input
     def getInputString(self, inputStr):
-
+        """
+        valid whether a string input is empty
+        :param inputStr: the string being examined
+        :return:
+        """
         if (len(inputStr) == 0):
             self.root.ids.footer_status.text = ("All fields must be completed")
             return False
@@ -102,6 +131,11 @@ class ReadingListApp(App):
 
     # validate integer input
     def getInputInt(self, intInput):
+        """
+        check whether input is a valid integer
+        :param intInput: the string being examined
+        :return:
+        """
         emptyCheck = self.getInputString(intInput)
         if emptyCheck == False:
             return False
